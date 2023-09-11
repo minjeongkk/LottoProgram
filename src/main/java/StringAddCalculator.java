@@ -48,10 +48,19 @@ public class StringAddCalculator {
         Pattern pattern = Pattern.compile("//(.)\n(.*)");
         Matcher matcher = pattern.matcher(inputString);
         if (matcher.find()) {
-            String addRegex = "|"+matcher.group(1);
-            regex += addRegex;
+            // 커스텀 구분자 추가
+            setRegex(matcher.group(1));
+            // 커스텀 구분자를 지정하는 문자열 제외하고 반환
             returnString = matcher.group(2);
         }
         return returnString;
+    }
+
+    /*
+    * 커스텀 구분자 추가하는 함수
+    * */
+    public static void setRegex(String customRegex) {
+        String addRegex = "|" + customRegex;
+        regex += addRegex;
     }
 }

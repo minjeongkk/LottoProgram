@@ -42,4 +42,13 @@ public class StringAddCalculatorTest {
         assertThatThrownBy(() -> StringAddCalculator.splitAndSum("-1,2,3"))
                 .isInstanceOf(RuntimeException.class);
     }
+
+    @Test
+    public void getString_기본_또는_커스텀(){
+        String result = StringAddCalculator.getString("1,2,3");
+        assertThat(result).isEqualTo("1,2,3");
+
+        String result2 = StringAddCalculator.getString("//;\n1;2;3");
+        assertThat(result2).isEqualTo("1;2;3");
+    }
 }

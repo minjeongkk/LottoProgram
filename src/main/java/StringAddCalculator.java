@@ -22,7 +22,8 @@ public class StringAddCalculator {
     }
 
     /*
-    * 유효한 문자열인지 확인
+    * 유효한 문자열인지 확인하는 함수
+    *
     * 유효한 문자열이면 true를 반환
     * 유효하지 않은 문자열(null, 빈 문자열)이면 false를 반환
     * */

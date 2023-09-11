@@ -4,19 +4,19 @@ import java.util.regex.Pattern;
 public class StringAddCalculator {
 
     private static String regex = ",|:";    // 기본 구분자
+    private static final int ZERO = 0;
 
     public static int splitAndSum(String inputString){
         String string = "";     // 문자열
 
         // 유효한 문자열인지 확인
         if(!isValidString(inputString)){
-            return 0;
+            return ZERO;
         }
 
         // 커스텀 구분자 지정
         // 입력 문자열 재지정
         string = getString(inputString);
-
 
         return 1;
     }

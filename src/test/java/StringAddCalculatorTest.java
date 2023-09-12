@@ -65,6 +65,13 @@ public class StringAddCalculatorTest {
         String[] result3 = StringAddCalculator.splitString("1:2:3:4");
         String[] expected3 =new String[]{"1","2","3","4"};
         assertThat(result3).isEqualTo(expected3);
+    }
 
+    @Test
+    public void convertToInt(){
+        int[] result = StringAddCalculator.convertToInt(new String[]{"1","2","3","4"});
+        int[] expected = new int[]{1,2,3,4};
+
+        assertThat(result).isEqualTo(expected);
     }
 }

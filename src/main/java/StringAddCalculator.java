@@ -9,6 +9,7 @@ public class StringAddCalculator {
     public static int splitAndSum(String inputString){
         String string = "";     // 문자열
         String[] strings = new String[]{};  // 구분자로 나눈 문자열
+        int[] nums = new int[]{};   // 문자열을 숫자로 변환
 
         // 유효한 문자열인지 확인
         if(!isValidString(inputString)){
@@ -22,6 +23,8 @@ public class StringAddCalculator {
         // 문자열 자르기
         strings = splitString(string);
 
+        // 문자열을 숫자로 바꾸기
+        nums = convertToInt(strings);
 
 
         return 1;
@@ -78,5 +81,24 @@ public class StringAddCalculator {
         return strings;
     }
 
+    /*
+    * 문자열 배열을 숫자 배열로 변환하는 함수
+    * */
+    public static int[] convertToInt(String[] strings){
+        int[] nums = new int[strings.length];
+        for(int i=0; i< strings.length; i++){
+            nums[i] = Integer.parseInt(strings[i]);
+            checkNegative(nums[i]);
+        }
+        return nums;
+    }
 
+    /*
+    * 음수이면 RuntimeException 예외를 throw하는 함수
+    * */
+    public static void checkNegative(int num){
+        if (num<0){
+            throw new RuntimeException("negative");
+        }
+    }
 }

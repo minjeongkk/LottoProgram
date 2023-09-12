@@ -84,17 +84,20 @@ public class StringAddCalculator {
         int[] nums = new int[strings.length];
         for (int i = 0; i < strings.length; i++) {
             nums[i] = Integer.parseInt(strings[i]);
-            checkNegative(nums[i]);
+            checkInt(nums[i]);
         }
         return nums;
     }
 
     /*
-    * 음수이면 RuntimeException 예외를 throw하는 함수
+    * 음수이거나 숫자가 아니면 RuntimeException 예외를 throw하는 함수
     * */
-    public static void checkNegative(int num) {
+    public static void checkInt(int num) {
         if (num < 0) {
             throw new RuntimeException("negative");
+        }
+        if (!Character.isDigit(num)) {
+            throw new RuntimeException("character");
         }
     }
 

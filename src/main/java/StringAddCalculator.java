@@ -101,4 +101,11 @@ public class StringAddCalculator {
             throw new RuntimeException("negative");
         }
     }
+
+    /*
+    * 숫자 배열의 값들을 모두 더하고, 합계를 반환하는 함수
+    * */
+    public static int sumNums(int[] nums){
+        return Arrays.stream(nums).sum();
+    }
 }

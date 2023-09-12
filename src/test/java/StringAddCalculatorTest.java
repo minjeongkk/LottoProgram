@@ -51,4 +51,20 @@ public class StringAddCalculatorTest {
         String result2 = StringAddCalculator.getString("//;\n1;2;3");
         assertThat(result2).isEqualTo("1;2;3");
     }
+
+    @Test
+    public void splitString_하나_또는_여러개(){
+        String[] result = StringAddCalculator.splitString("1");
+        String[] expected =new String[]{"1"};
+        assertThat(result).isEqualTo(expected);
+
+        String[] result2 = StringAddCalculator.splitString("1,2,3");
+        String[] expected2 =new String[]{"1","2","3"};
+        assertThat(result2).isEqualTo(expected2);
+
+        String[] result3 = StringAddCalculator.splitString("1:2:3:4");
+        String[] expected3 =new String[]{"1","2","3","4"};
+        assertThat(result3).isEqualTo(expected3);
+
+    }
 }

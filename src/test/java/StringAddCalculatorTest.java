@@ -68,10 +68,12 @@ public class StringAddCalculatorTest {
     }
 
     @Test
-    public void convertToInt(){
+    public void convertToInt_양수_또는_음수(){
         int[] result = StringAddCalculator.convertToInt(new String[]{"1","2","3","4"});
         int[] expected = new int[]{1,2,3,4};
-
         assertThat(result).isEqualTo(expected);
+
+        assertThatThrownBy(() -> StringAddCalculator.convertToInt(new String[]{"-1","2","3","4"}))
+                .isInstanceOf(RuntimeException.class);
     }
 }

@@ -76,4 +76,10 @@ public class StringAddCalculatorTest {
         assertThatThrownBy(() -> StringAddCalculator.convertToInt(new String[]{"-1","2","3","4"}))
                 .isInstanceOf(RuntimeException.class);
     }
+
+    @Test
+    public void convertToInt_문자(){
+        assertThatThrownBy(() -> StringAddCalculator.convertToInt(new String[]{"1","d","3","4"}))
+                .isInstanceOf(RuntimeException.class);
+    }
 }

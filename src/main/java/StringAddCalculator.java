@@ -83,21 +83,21 @@ public class StringAddCalculator {
     public static int[] convertToInt(String[] strings) {
         int[] nums = new int[strings.length];
         for (int i = 0; i < strings.length; i++) {
+            checkInt(strings[i]);
             nums[i] = Integer.parseInt(strings[i]);
-            checkInt(nums[i]);
         }
         return nums;
     }
 
     /*
-    * 음수이거나 숫자가 아니면 RuntimeException 예외를 throw하는 함수
+    * 숫자가 아니거나 음수이면 RuntimeException 예외를 throw하는 함수
     * */
-    public static void checkInt(int num) {
-        if (num < 0) {
-            throw new RuntimeException("negative");
-        }
-        if (!Character.isDigit(num)) {
+    public static void checkInt(String checkStr) {
+        if (!checkStr.matches("[+-]?\\d*(\\.\\d+)?")) {
             throw new RuntimeException("character");
+        }
+        if (Integer.parseInt(checkStr) < 0) {
+            throw new RuntimeException("negative");
         }
     }
 

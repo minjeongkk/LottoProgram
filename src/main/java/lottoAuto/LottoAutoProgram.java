@@ -126,6 +126,47 @@ public class LottoAutoProgram {
         }
     }
 
+    /*
+    * 구입한 개수만큼 지난주 로또 번호 일치 개수 세는 함수
+    *
+    * 3개, 4개, 5개, 6개의 번호가 일치하는 로또 개수의 배열을 반환
+    * */
+    public int[] countMatchValue(int[] lottoNums, List<List<Integer>> lottoList) {
+        List<Integer> countLists = new ArrayList<>();
+        int[] matchCounts = new int[]{0, 0, 0, 0};
+        for (int i = 0; i < lottoList.size(); i++) {
+            countLists.add(checkMatchLottoNum(lottoNums, lottoList.get(i)));
+        }
+        for (int i = 0; i<matchCounts.length; i++){
+            matchCounts[i] = Collections.frequency(countLists, i+3);
+        }
+        return matchCounts;
+    }
+
+    /*
+    * 하나의 로또에서 일치하는 번호 개수를 세는 함수
+    * */
+    public int checkMatchLottoNum(int[] lottoNums, List<Integer> lotto) {
+        int sum = 0;
+        for (int i = 0; i < lottoNums.length; i++) {
+            sum += isMatched(lottoNums[i], lotto);    // 일치하면 1 더함
+        }
+        return sum;
+    }
+
+    /*
+    * 구매한 로또에 지난주 로또 번호와 일치하는 번호가 있는지 확인하는 함수
+    *
+    * 있으면 1 리턴, 없으면 0 리턴
+    * */
+    public int isMatched(int lottoNum, List<Integer> lotto) {
+        if (lotto.contains(lottoNum)) {
+            return 1;
+        }
+        return 0;
+    }
+
+
 
     /*
     * 로또(자동) 프로그램 동작 함수
@@ -147,6 +188,9 @@ public class LottoAutoProgram {
         // 지난 주 로또 번호 입력
         lottoAutoProgramUI.printInputNumbers();
         int[] lottoNums = inputBeforeLotto();
+
+        // 로또 일치 개수 계산
+        int[] match = countMatchValue(lottoNums, lottoList);
 
     }
 }

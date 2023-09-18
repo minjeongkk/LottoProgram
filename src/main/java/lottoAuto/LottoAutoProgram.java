@@ -28,6 +28,17 @@ public class LottoAutoProgram {
     }
 
     /*
+     * 구입 로또 개수를 세는 함수
+     *
+     * 로또 1개당 1000원으로 계산
+     * */
+    public int countLotto(int money) {
+        int count = money / 1000;
+        return count;
+    }
+
+
+    /*
     * 로또(자동) 프로그램 동작 함수
     * */
     public void run() {
@@ -36,5 +47,9 @@ public class LottoAutoProgram {
 
         // 구입 금액 입력
         int money = inputMoney();
+
+        // 구입로또 개수 셈
+        int size = countLotto(money);
+
     }
 }

@@ -6,7 +6,6 @@ import java.util.*;
 public class LottoAutoProgram {
     private final int[] winnings = new int[]{5000, 50000, 1500000, 2000000000};     // 로또 상금 (3개 일치, 4개 일치, 5개 일치, 6개 일치)
 
-
     /*
      * 구입 금액 입력하는 함수
      * */
@@ -131,25 +130,25 @@ public class LottoAutoProgram {
     }
 
     /*
-    * 구입한 개수만큼 지난주 로또 번호 일치 개수 세는 함수
-    *
-    * 3개, 4개, 5개, 6개의 번호가 일치하는 로또 개수의 배열을 반환
-    * */
+     * 구입한 개수만큼 지난주 로또 번호 일치 개수 세는 함수
+     *
+     * 3개, 4개, 5개, 6개의 번호가 일치하는 로또 개수의 배열을 반환
+     * */
     public int[] countMatchValue(int[] lottoNums, List<List<Integer>> lottoList) {
         List<Integer> countLists = new ArrayList<>();
         int[] matchCounts = new int[]{0, 0, 0, 0};
         for (int i = 0; i < lottoList.size(); i++) {
             countLists.add(checkMatchLottoNum(lottoNums, lottoList.get(i)));
         }
-        for (int i = 0; i<matchCounts.length; i++){
-            matchCounts[i] = Collections.frequency(countLists, i+3);
+        for (int i = 0; i < matchCounts.length; i++) {
+            matchCounts[i] = Collections.frequency(countLists, i + 3);
         }
         return matchCounts;
     }
 
     /*
-    * 하나의 로또에서 일치하는 번호 개수를 세는 함수
-    * */
+     * 하나의 로또에서 일치하는 번호 개수를 세는 함수
+     * */
     public int checkMatchLottoNum(int[] lottoNums, List<Integer> lotto) {
         int sum = 0;
         for (int i = 0; i < lottoNums.length; i++) {
@@ -159,10 +158,10 @@ public class LottoAutoProgram {
     }
 
     /*
-    * 구매한 로또에 지난주 로또 번호와 일치하는 번호가 있는지 확인하는 함수
-    *
-    * 있으면 1 리턴, 없으면 0 리턴
-    * */
+     * 구매한 로또에 지난주 로또 번호와 일치하는 번호가 있는지 확인하는 함수
+     *
+     * 있으면 1 리턴, 없으면 0 리턴
+     * */
     public int isMatched(int lottoNum, List<Integer> lotto) {
         if (lotto.contains(lottoNum)) {
             return 1;
@@ -171,10 +170,10 @@ public class LottoAutoProgram {
     }
 
     /*
-    * 수익률 계산하는 함수
-    *
-    * (당첨 금액)/(구입 금액)으로 계산하여 소수점 둘째자리까지 표시
-    * */
+     * 수익률 계산하는 함수
+     *
+     * (당첨 금액)/(구입 금액)으로 계산하여 소수점 둘째자리까지 표시
+     * */
     public float calculateRate(int money, int[] match) {
         int earnMoney = 0;
         for (int i = 0; i < match.length; i++) {
@@ -186,8 +185,8 @@ public class LottoAutoProgram {
     }
 
     /*
-    * 수익률로 손해, 이득을 판단하는 함수 (기준은 1)
-    * */
+     * 수익률로 손해, 이득을 판단하는 함수 (기준은 1)
+     * */
     public String checkResult(float rate) {
         if (rate < 1) {
             return "손해";
@@ -197,8 +196,8 @@ public class LottoAutoProgram {
 
 
     /*
-    * 로또(자동) 프로그램 동작 함수
-    * */
+     * 로또(자동) 프로그램 동작 함수
+     * */
     public void run() {
         LottoAutoProgramUI lottoAutoProgramUI = new LottoAutoProgramUI();
         lottoAutoProgramUI.printInputString();
@@ -224,6 +223,5 @@ public class LottoAutoProgram {
         float rate = calculateRate(money, match);
         String result = checkResult(rate);
         lottoAutoProgramUI.printResult(match, rate, result);
-
     }
 }

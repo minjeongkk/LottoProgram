@@ -69,6 +69,62 @@ public class LottoAutoProgram {
         return lottoNums;
     }
 
+    /*
+     * 지난 주 로또 번호 입력하는 함수
+     *
+     * 6개의 숫자 배열로 반환
+     * */
+    public int[] inputBeforeLotto() {
+        Scanner scanner = new Scanner(System.in);
+        String inputValue = scanner.nextLine();
+        int[] nums = splitNums(inputValue);
+        return nums;
+    }
+
+    /*
+     * 문자열로 입력한 로또 번호를 구분자(,) 를 기준으로 자르고 숫자로 변환하는 함수
+     *
+     * 숫자가 아닌 경우, 숫자 범위를 벗어나는 경우, 로또 번호의 개수가 6개가 아닌 경우, 번호가 중복된 경우 예외처리
+     * */
+    public int[] splitNums(String nums) {
+        String[] strings = nums.split(",");
+        int[] results = new int[strings.length];
+        for (int i = 0; i < strings.length; i++) {
+            checkLottoNum(strings[i].trim());
+            results[i] = Integer.parseInt(strings[i].trim());
+        }
+        checkLottoSize(results);
+        return results;
+    }
+
+    /*
+     * 로또 번호를 확인하는 함수
+     *
+     * 숫자가 아닌 경우, 범위를 벗어나는 경우 예외처리
+     * */
+    public void checkLottoNum(String numStr) {
+        if (numStr == null || numStr.isEmpty() || !numStr.matches("[+-]?\\d*(\\.\\d+)?")) {
+            throw new RuntimeException("숫자를 입력해주세요.");
+        }
+        if ((Integer.parseInt(numStr) < 1 || Integer.parseInt(numStr) > 45)) {
+            throw new RuntimeException("1~45 사이의 숫자를 입력해주세요.");
+        }
+    }
+
+    /*
+     * 로또 번호의 개수를 확인하는 함수
+     *
+     * 중복되지 않은 번호가 6개가 아니면 예외처리
+     * */
+    public void checkLottoSize(int[] beforeLotto) {
+        Set<Integer> checkSize = new HashSet<>();
+        for (int i = 0; i < beforeLotto.length; i++) {
+            checkSize.add(beforeLotto[i]);
+        }
+        if (checkSize.size() != 6) {
+            throw new RuntimeException("중복되지 않은 6개의 숫자를 입력해주세요.");
+        }
+    }
 
 
     /*
@@ -88,6 +144,9 @@ public class LottoAutoProgram {
         List<List<Integer>> lottoList = buyLotto(size);
         lottoAutoProgramUI.printPurchaseList(size, lottoList);
 
+        // 지난 주 로또 번호 입력
+        lottoAutoProgramUI.printInputNumbers();
+        int[] lottoNums = inputBeforeLotto();
 
     }
 }

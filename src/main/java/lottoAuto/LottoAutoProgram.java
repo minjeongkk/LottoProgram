@@ -1,8 +1,12 @@
 package lottoAuto;
 
+import java.text.DecimalFormat;
 import java.util.*;
 
 public class LottoAutoProgram {
+    private final int[] winnings = new int[]{5000, 50000, 1500000, 2000000000};     // 로또 상금 (3개 일치, 4개 일치, 5개 일치, 6개 일치)
+
+
     /*
      * 구입 금액 입력하는 함수
      * */
@@ -166,6 +170,30 @@ public class LottoAutoProgram {
         return 0;
     }
 
+    /*
+    * 수익률 계산하는 함수
+    *
+    * (당첨 금액)/(구입 금액)으로 계산하여 소수점 둘째자리까지 표시
+    * */
+    public float calculateRate(int money, int[] match) {
+        int earnMoney = 0;
+        for (int i = 0; i < match.length; i++) {
+            earnMoney += match[i] * winnings[i];
+        }
+        DecimalFormat df = new DecimalFormat("0.00");
+        String earnRate = df.format((float) earnMoney / money);
+        return Float.parseFloat(earnRate);
+    }
+
+    /*
+    * 수익률로 손해, 이득을 판단하는 함수 (기준은 1)
+    * */
+    public String checkResult(float rate) {
+        if (rate < 1) {
+            return "손해";
+        }
+        return "이득";
+    }
 
 
     /*
@@ -191,6 +219,11 @@ public class LottoAutoProgram {
 
         // 로또 일치 개수 계산
         int[] match = countMatchValue(lottoNums, lottoList);
+
+        // 수익률 계산 및 통계 결과 출력
+        float rate = calculateRate(money, match);
+        String result = checkResult(rate);
+        lottoAutoProgramUI.printResult(match, rate, result);
 
     }
 }

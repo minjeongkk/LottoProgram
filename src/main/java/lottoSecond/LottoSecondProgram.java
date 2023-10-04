@@ -83,6 +83,31 @@ public class LottoSecondProgram {
     }
 
     /*
+     * 보너스볼 입력 함수
+     * */
+    public int inputBonusNum(List<Integer> lottoNums){
+        Scanner scanner = new Scanner(System.in);
+        String inputValue = scanner.nextLine();
+        return checkBonusNum(inputValue, lottoNums);
+    }
+
+    /*
+     * 보너스볼 유효성 체크
+     *
+     * 1~45 사이의 숫자가 아닌 경우, 로또 번호와 중복되는 번호가 있는 경우 예외 처리
+     * */
+    public int checkBonusNum(String inputValue, List<Integer> lottoNums){
+        if (inputValue == null || inputValue.isEmpty() || !inputValue.matches("[+-]?\\d*(\\.\\d+)?")) {
+            throw new RuntimeException("숫자를 입력해주세요.");
+        } else if (Integer.parseInt(inputValue) < 1 || Integer.parseInt(inputValue) > 45) {
+            throw new RuntimeException("1~45 사이의 숫자를 입력해주세요.");
+        } else if (isMatched(Integer.parseInt(inputValue),lottoNums)==1){
+            throw new RuntimeException("중복되지 않은 숫자를 입력해주세요.");
+        }
+        return Integer.parseInt(inputValue);
+    }
+
+    /*
      * 문자열로 입력한 로또 번호를 구분자(,) 를 기준으로 자르고 숫자로 변환하는 함수
      *
      * 숫자가 아닌 경우, 숫자 범위를 벗어나는 경우, 로또 번호의 개수가 6개가 아닌 경우, 번호가 중복된 경우 예외처리
@@ -187,6 +212,9 @@ public class LottoSecondProgram {
         lottoSecondProgramUI.printInputNumbers();
         List<Integer> lottoNums = inputBeforeLotto();
 
+        // 보너스 번호 입력
+        lottoSecondProgramUI.printInputBonus();
+        int bonusNum = inputBonusNum(lottoNums);
 
         // 수익률 계산 및 통계 결과 출력
         float rate = calculateRate(money);

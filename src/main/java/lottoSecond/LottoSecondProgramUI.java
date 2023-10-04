@@ -19,4 +19,8 @@ public class LottoSecondProgramUI {
     public void printInputNumbers() {
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
     }
+
+    public void printInputBonus() {
+        System.out.println("보너스 볼을 입력해 주세요.");
+    }
 }

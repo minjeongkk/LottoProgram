@@ -5,6 +5,16 @@ import java.util.*;
 
 public class LottoSecondProgram {
     /*
+     * 당첨 등수 통계를 저장하기 위해 선언 및 초기화
+     * */
+    private final Map<Rank, Integer> countRanks = new HashMap<Rank, Integer>();
+    public LottoSecondProgram() {
+        for (Rank rank : Rank.values()){
+            countRanks.put(rank,0);
+        }
+    }
+
+    /*
      * 구입 금액 입력하는 함수
      * */
     public int inputMoney() {
@@ -173,7 +183,7 @@ public class LottoSecondProgram {
     public float calculateRate(int money) {
         int earnMoney = 0;
         for (Rank rank : Rank.values()) {
-
+            earnMoney += countRanks.get(rank) * rank.getWinningMoney();
         }
         DecimalFormat df = new DecimalFormat("0.00");
         String earnRate = df.format((float) earnMoney / money);

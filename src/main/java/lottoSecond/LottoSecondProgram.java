@@ -162,6 +162,17 @@ public class LottoSecondProgram {
         }
     }
 
+    /*
+     * 구입한 개수만큼 지난주 로또 번호 일치 개수 세는 함수
+     *
+     * hashmap에 (rank,당첨 개수) 쌍으로 저장
+     * */
+    public void countMatchValue(List<Integer> lottoNums, int bonusNum, List<Lotto> lottoList) {
+        for (Lotto lotto : lottoList) {
+            Rank rank = lotto.checkRank(lottoNums, bonusNum);
+            countRanks.replace(rank, countRanks.get(rank) + 1);
+        }
+    }
 
     /*
      * 로또에 일치하는 번호가 있는지 확인하는 함수
@@ -225,6 +236,9 @@ public class LottoSecondProgram {
         // 보너스 번호 입력
         lottoSecondProgramUI.printInputBonus();
         int bonusNum = inputBonusNum(lottoNums);
+
+        // 로또 일치 개수 계산
+        countMatchValue(lottoNums, bonusNum,lottoList);
 
         // 수익률 계산 및 통계 결과 출력
         float rate = calculateRate(money);

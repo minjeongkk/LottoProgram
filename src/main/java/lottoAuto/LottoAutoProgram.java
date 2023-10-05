@@ -174,13 +174,16 @@ public class LottoAutoProgram {
      *
      * (당첨 금액)/(구입 금액)으로 계산하여 소수점 둘째자리까지 표시
      * */
-    public float calculateRate(int money, int[] match) {
+    public float calculateRate(int size, int[] match) {
+        if (size ==0){
+            return 0f;
+        }
         int earnMoney = 0;
         for (int i = 0; i < match.length; i++) {
             earnMoney += match[i] * winnings[i];
         }
         DecimalFormat df = new DecimalFormat("0.00");
-        String earnRate = df.format((float) earnMoney / money);
+        String earnRate = df.format((float) earnMoney / size * 1000);
         return Float.parseFloat(earnRate);
     }
 
@@ -220,7 +223,7 @@ public class LottoAutoProgram {
         int[] match = countMatchValue(lottoNums, lottoList);
 
         // 수익률 계산 및 통계 결과 출력
-        float rate = calculateRate(money, match);
+        float rate = calculateRate(size, match);
         String result = checkResult(rate);
         lottoAutoProgramUI.printResult(match, rate, result);
     }

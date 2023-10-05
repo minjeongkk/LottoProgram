@@ -191,13 +191,16 @@ public class LottoSecondProgram {
      *
      * (당첨 금액)/(구입 금액)으로 계산하여 소수점 둘째자리까지 표시
      * */
-    public float calculateRate(int money) {
+    public float calculateRate(int size) {
+        if (size ==0){
+            return 0f;
+        }
         int earnMoney = 0;
         for (Rank rank : Rank.values()) {
             earnMoney += countRanks.get(rank) * rank.getWinningMoney();
         }
         DecimalFormat df = new DecimalFormat("0.00");
-        String earnRate = df.format((float) earnMoney / money);
+        String earnRate = df.format((float) earnMoney / size * 1000);
         return Float.parseFloat(earnRate);
     }
 
@@ -241,7 +244,7 @@ public class LottoSecondProgram {
         countMatchValue(lottoNums, bonusNum,lottoList);
 
         // 수익률 계산 및 통계 결과 출력
-        float rate = calculateRate(money);
+        float rate = calculateRate(size);
         String result = checkResult(rate);
         lottoSecondProgramUI.printResult(countRanks, rate, result);
     }

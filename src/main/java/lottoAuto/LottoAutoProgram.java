@@ -183,7 +183,7 @@ public class LottoAutoProgram {
             earnMoney += match[i] * winnings[i];
         }
         DecimalFormat df = new DecimalFormat("0.00");
-        String earnRate = df.format((float) earnMoney / size * 1000);
+        String earnRate = df.format((float) earnMoney / (size * 1000));
         return Float.parseFloat(earnRate);
     }
 

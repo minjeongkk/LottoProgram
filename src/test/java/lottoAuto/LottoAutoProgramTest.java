@@ -81,7 +81,7 @@ class LottoAutoProgramTest {
     public void calculateRate() {
         LottoAutoProgram lottoAutoProgram = new LottoAutoProgram();
         float expected = 0.36f;
-        float actual = lottoAutoProgram.calculateRate(14000, new int[]{1, 0, 0, 0});
+        float actual = lottoAutoProgram.calculateRate(14, new int[]{1, 0, 0, 0});
         assertThat(actual).isEqualTo(expected);
     }
 

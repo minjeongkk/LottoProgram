@@ -200,7 +200,7 @@ public class LottoSecondProgram {
             earnMoney += countRanks.get(rank) * rank.getWinningMoney();
         }
         DecimalFormat df = new DecimalFormat("0.00");
-        String earnRate = df.format((float) earnMoney / size * 1000);
+        String earnRate = df.format((float) earnMoney / (size * 1000));
         return Float.parseFloat(earnRate);
     }
 

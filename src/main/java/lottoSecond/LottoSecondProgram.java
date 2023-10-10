@@ -219,8 +219,7 @@ public class LottoSecondProgram {
      * 로또(2등) 프로그램 동작 함수
      * */
     public void run() {
-        LottoSecondProgramUI lottoSecondProgramUI = new LottoSecondProgramUI();
-        lottoSecondProgramUI.printInputString();
+        InputView.printInputMoney();
 
         // 구입 금액 입력
         int money = inputMoney();
@@ -233,11 +232,11 @@ public class LottoSecondProgram {
         lottoSecondProgramUI.printPurchaseList(size, lottoList);
 
         // 지난 주 로또 번호 입력
-        lottoSecondProgramUI.printInputNumbers();
+        InputView.printInputLottoNums();
         List<Integer> lottoNums = inputBeforeLotto();
 
         // 보너스 번호 입력
-        lottoSecondProgramUI.printInputBonus();
+        InputView.printInputBonus();
         int bonusNum = inputBonusNum(lottoNums);
 
         // 로또 일치 개수 계산
@@ -246,6 +245,6 @@ public class LottoSecondProgram {
         // 수익률 계산 및 통계 결과 출력
         float rate = calculateRate(size);
         String result = checkResult(rate);
-        lottoSecondProgramUI.printResult(countRanks, rate, result);
+        OutputView.printOutputResult(countRanks, rate, result);
     }
 }

@@ -1,4 +1,4 @@
-package lottoSecond;
+package lottoSecond.Model;
 
 import java.util.List;
 
@@ -7,20 +7,16 @@ import java.util.List;
 *
 * 로또 번호, 당첨 등수
 * */
-public class Lotto {
+public class LottoTicket {
     private final List<Integer> lottoNums;
     private Rank rank;
 
-    public Lotto(List<Integer> lottoNums) {
+    public LottoTicket(List<Integer> lottoNums) {
         this.lottoNums = lottoNums;
     }
 
     public List<Integer> getLottoNums() {
         return lottoNums;
-    }
-
-    public Rank getRank() {
-        return rank;
     }
 
     @Override

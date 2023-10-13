@@ -1,4 +1,4 @@
-package lottoSecond;
+package lottoSecond.Model;
 
 public enum Rank {
     FIRST(6, 2_000_000_000),
@@ -28,11 +28,14 @@ public enum Rank {
         // TODO 일치하는 수를 로또 등수로 변경한다. enum 값 목록은 "Rank[] ranks = values();"와 같이 가져올 수 있다.
         if (countOfMatch == FIRST.countOfMatch){
             return FIRST;
-        } else if (countOfMatch == SECOND.countOfMatch){
+        }
+        if (countOfMatch == SECOND.countOfMatch){
             return matchBonus? SECOND : THIRD;
-        } else if (countOfMatch == FOURTH.countOfMatch){
+        }
+        if (countOfMatch == FOURTH.countOfMatch){
             return FOURTH;
-        } else if (countOfMatch == FIFTH.countOfMatch){
+        }
+        if (countOfMatch == FIFTH.countOfMatch){
             return FIFTH;
         }
         return MISS;

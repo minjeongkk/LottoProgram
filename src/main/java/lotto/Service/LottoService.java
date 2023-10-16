@@ -36,7 +36,6 @@ public class LottoService {
 
     public List<LottoTicket> buyLottoTickets(int count) {
         LottoStore lottoStore = new LottoStore();
-        lottoStore.setLottoStore();
         List<LottoTicket> purchaseLottoTickets = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             LottoTicket lottoTicket = lottoStore.createLotto();    // 로또 1개 생성

@@ -12,6 +12,12 @@ public class LottoStore {
     static final String ERROR_INPUT_DUCPLICATED = "중복되지 않은 숫자를 입력해주세요.";
     static final List<Integer> nums = new ArrayList<>();
 
+    public LottoStore() {
+        for (int i = MIN_LOTTONUM; i <= MAX_LOTTONUM; i++) {
+            nums.add(i);
+        }
+    }
+
     public List<Integer> splitNums(String nums) {
         String[] strings = nums.split(",");
         List<Integer> results = new ArrayList<>();
@@ -42,18 +48,11 @@ public class LottoStore {
         }
     }
 
-    public void setLottoStore(){
-        for (int i = MIN_LOTTONUM; i <= MAX_LOTTONUM; i++) {
-            nums.add(i);
-        }
-    }
-
     public LottoTicket createLotto() {
         Collections.shuffle(nums);
 
-//        List<Integer> lottoNums = nums.subList(0, LOTTO_SIZE);
-        List<Integer> lottoNums = null;
-        for (int i=0; i<LOTTO_SIZE; i++){
+        List<Integer> lottoNums = new ArrayList<>();
+        for (int i = 0; i < LOTTO_SIZE; i++) {
             lottoNums.add(nums.get(i));
         }
         Collections.sort(lottoNums);

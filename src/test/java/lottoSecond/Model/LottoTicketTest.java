@@ -11,19 +11,19 @@ class LottoTicketTest {
 
     @Test
     void checkRank_2등_3등() {
-        List<Integer> winningLotto = Arrays.asList(1,2,3,4,5,6);
-        int bonusNum = 7;
-        LottoTicket lottoTicket = new LottoTicket(Arrays.asList(1,2,3,4,5,7));
-        Rank rank = lottoTicket.checkRank(winningLotto, bonusNum);
+        LottoTicket lottoTicket = new LottoTicket(Arrays.asList(1,2,3,4,5,6));
+        WinningTicket winningTicket = new WinningTicket(Arrays.asList(1,2,3,4,5,10));
+        winningTicket.checkBonusNum("6");
+        Rank rank = lottoTicket.checkRank(winningTicket);
         assertThat(rank).isEqualTo(Rank.SECOND);
     }
 
     @Test
     void checkRank_3등(){
-        List<Integer> winningLotto = Arrays.asList(1,2,3,4,5,6);
-        int bonusNum = 7;
         LottoTicket lottoTicket = new LottoTicket(Arrays.asList(1,2,3,4,5,8));
-        Rank rank = lottoTicket.checkRank(winningLotto, bonusNum);
+        WinningTicket winningTicket = new WinningTicket(Arrays.asList(1,2,3,4,5,10));
+        winningTicket.checkBonusNum("11");
+        Rank rank = lottoTicket.checkRank(winningTicket);
         assertThat(rank).isEqualTo(Rank.THIRD);
     }
 }

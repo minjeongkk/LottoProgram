@@ -26,16 +26,16 @@ public enum Rank {
 
     public static Rank valueOf(int countOfMatch, boolean matchBonus) {
         // TODO 일치하는 수를 로또 등수로 변경한다. enum 값 목록은 "Rank[] ranks = values();"와 같이 가져올 수 있다.
-        if (countOfMatch == FIRST.countOfMatch){
+        if (countOfMatch == FIRST.countOfMatch) {
             return FIRST;
         }
-        if (countOfMatch == SECOND.countOfMatch){
-            return matchBonus? SECOND : THIRD;
+        if (countOfMatch == SECOND.countOfMatch) {
+            return matchBonus ? SECOND : THIRD;
         }
-        if (countOfMatch == FOURTH.countOfMatch){
+        if (countOfMatch == FOURTH.countOfMatch) {
             return FOURTH;
         }
-        if (countOfMatch == FIFTH.countOfMatch){
+        if (countOfMatch == FIFTH.countOfMatch) {
             return FIFTH;
         }
         return MISS;

@@ -36,4 +36,19 @@ public class LottoService {
         }
         return purchaseLottoTickets;
     }
+
+    public WinningTicket inputBeforeLotto() {
+        Scanner scanner = new Scanner(System.in);
+        String inputValue = scanner.nextLine();
+        LottoStore lottoStore = new LottoStore();
+        List<Integer> nums = lottoStore.splitNums(inputValue);
+        return new WinningTicket(nums);
+    }
+
+    public void inputBonusNum(WinningTicket winningTicket) {
+        Scanner scanner = new Scanner(System.in);
+        String inputValue = scanner.nextLine();
+        winningTicket.checkBonusNum(inputValue);
+    }
+
 }

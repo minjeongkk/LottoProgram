@@ -2,6 +2,7 @@ package lottoSecond.Controller;
 
 import lottoSecond.Model.LottoTicket;
 import lottoSecond.Model.Money;
+import lottoSecond.Model.WinningTicket;
 import lottoSecond.Service.LottoService;
 import lottoSecond.View.InputView;
 import lottoSecond.View.OutputView;
@@ -23,4 +24,13 @@ public class LottoController {
         OutputView.printOutputLottoList(count, lottoTicketList);
         return lottoTicketList;
     }
+
+    public WinningTicket setWinningTicket() {
+        InputView.printInputLottoNums();
+        WinningTicket winningTicket = lottoService.inputBeforeLotto();
+        InputView.printInputBonus();
+        lottoService.inputBonusNum(winningTicket);
+        return winningTicket;
+    }
+
 }

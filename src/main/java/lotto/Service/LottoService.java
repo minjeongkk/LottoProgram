@@ -1,6 +1,6 @@
-package lottoSecond.Service;
+package lotto.Service;
 
-import lottoSecond.Model.*;
+import lotto.Model.*;
 
 import java.text.DecimalFormat;
 import java.util.*;

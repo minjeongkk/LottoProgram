@@ -1,9 +1,9 @@
-package lottoSecond.Service;
+package lotto.Service;
 
-import lottoSecond.Model.LottoTicket;
-import lottoSecond.Model.Money;
-import lottoSecond.Model.Rank;
-import lottoSecond.Model.WinningTicket;
+import lotto.Model.LottoTicket;
+import lotto.Model.Money;
+import lotto.Model.Rank;
+import lotto.Model.WinningTicket;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

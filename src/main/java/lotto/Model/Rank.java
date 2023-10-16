@@ -1,4 +1,4 @@
-package lottoSecond.Model;
+package lotto.Model;
 
 public enum Rank {
     FIRST(6, 2_000_000_000),

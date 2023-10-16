@@ -1,12 +1,12 @@
-package lottoSecond.Controller;
+package lotto.Controller;
 
-import lottoSecond.Model.LottoTicket;
-import lottoSecond.Model.Money;
-import lottoSecond.Model.Rank;
-import lottoSecond.Model.WinningTicket;
-import lottoSecond.Service.LottoService;
-import lottoSecond.View.InputView;
-import lottoSecond.View.OutputView;
+import lotto.Model.LottoTicket;
+import lotto.Model.Money;
+import lotto.Model.Rank;
+import lotto.Model.WinningTicket;
+import lotto.Service.LottoService;
+import lotto.View.InputView;
+import lotto.View.OutputView;
 
 import java.util.List;
 import java.util.Map;

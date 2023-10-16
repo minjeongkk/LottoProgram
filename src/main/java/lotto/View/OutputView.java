@@ -1,7 +1,7 @@
-package lottoSecond.View;
+package lotto.View;
 
-import lottoSecond.Model.LottoTicket;
-import lottoSecond.Model.Rank;
+import lotto.Model.LottoTicket;
+import lotto.Model.Rank;
 
 import java.util.List;
 import java.util.Map;

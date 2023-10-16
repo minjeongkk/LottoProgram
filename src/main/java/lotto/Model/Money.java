@@ -1,4 +1,4 @@
-package lottoSecond.Model;
+package lotto.Model;
 
 public class Money {
     private int inputMoney = 0;

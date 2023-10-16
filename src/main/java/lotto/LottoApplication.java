@@ -1,9 +1,9 @@
-package lottoSecond;
+package lotto;
 
-import lottoSecond.Controller.LottoController;
-import lottoSecond.Model.LottoTicket;
-import lottoSecond.Model.Rank;
-import lottoSecond.Model.WinningTicket;
+import lotto.Controller.LottoController;
+import lotto.Model.LottoTicket;
+import lotto.Model.Rank;
+import lotto.Model.WinningTicket;
 
 import java.util.List;
 import java.util.Map;

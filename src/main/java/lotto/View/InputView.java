@@ -1,4 +1,4 @@
-package lottoSecond.View;
+package lotto.View;
 
 public class InputView {
     private static final String INPUT_MONEY = "구입금액을 입력해 주세요.";

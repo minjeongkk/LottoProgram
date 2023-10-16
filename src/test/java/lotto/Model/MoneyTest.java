@@ -1,4 +1,4 @@
-package lottoSecond.Model;
+package lotto.Model;
 
 import org.junit.jupiter.api.Test;
 

@@ -39,4 +39,11 @@ public class LottoController {
         return lottoService.countMatchValue(winningTicket, lottoTickets);
     }
 
+    public void printResult(int count, Map<Rank, Integer> countRanks) {
+        float rate = lottoService.calculateRate(count);
+        String result = lottoService.checkResult(rate);
+        OutputView.printOutputResult(countRanks, rate, result);
+    }
+
+
 }

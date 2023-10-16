@@ -2,13 +2,19 @@ package lottoSecond.Service;
 
 import lottoSecond.Model.*;
 
+import java.text.DecimalFormat;
 import java.util.*;
 
 public class LottoService {
     private final int ZERO = 0;
     private final int ONE = 1;
-
     private final int LOTTO_MONEY = 1000;
+    private final float RATE_ZERO = 0f;
+    private final int RATE_STANDARD = 1;
+    private final String DECIMAL_PATTERN = "0.00";
+    private final String STRING_BENEFIT = "이득";
+    private final String STRING_LOSS = "손해";
+
 
     private final Map<Rank, Integer> countRanks = new HashMap<Rank, Integer>();
 
@@ -59,6 +65,26 @@ public class LottoService {
             countRanks.replace(rank, countRanks.get(rank) + ONE);
         }
         return countRanks;
+    }
+
+    public float calculateRate(int size) {
+        if (size == ZERO) {
+            return RATE_ZERO;
+        }
+        int earnMoney = 0;
+        for (Rank rank : Rank.values()) {
+            earnMoney += countRanks.get(rank) * rank.getWinningMoney();
+        }
+        DecimalFormat df = new DecimalFormat(DECIMAL_PATTERN);
+        String earnRate = df.format((float) earnMoney / (size * LOTTO_MONEY));
+        return Float.parseFloat(earnRate);
+    }
+
+    public String checkResult(float rate) {
+        if (rate < RATE_STANDARD) {
+            return STRING_LOSS;
+        }
+        return STRING_BENEFIT;
     }
 
 }

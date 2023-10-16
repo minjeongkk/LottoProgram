@@ -6,6 +6,8 @@ import java.util.*;
 
 public class LottoService {
     private final int ZERO = 0;
+    private final int ONE = 1;
+
     private final int LOTTO_MONEY = 1000;
 
     private final Map<Rank, Integer> countRanks = new HashMap<Rank, Integer>();
@@ -49,6 +51,14 @@ public class LottoService {
         Scanner scanner = new Scanner(System.in);
         String inputValue = scanner.nextLine();
         winningTicket.checkBonusNum(inputValue);
+    }
+
+    public Map<Rank, Integer> countMatchValue(WinningTicket winningTicket, List<LottoTicket> lottoTicketList) {
+        for (LottoTicket lottoTicket : lottoTicketList) {
+            Rank rank = lottoTicket.checkRank(winningTicket);
+            countRanks.replace(rank, countRanks.get(rank) + ONE);
+        }
+        return countRanks;
     }
 
 }

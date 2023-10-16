@@ -2,12 +2,14 @@ package lottoSecond.Controller;
 
 import lottoSecond.Model.LottoTicket;
 import lottoSecond.Model.Money;
+import lottoSecond.Model.Rank;
 import lottoSecond.Model.WinningTicket;
 import lottoSecond.Service.LottoService;
 import lottoSecond.View.InputView;
 import lottoSecond.View.OutputView;
 
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
     private final LottoService lottoService;
@@ -31,6 +33,10 @@ public class LottoController {
         InputView.printInputBonus();
         lottoService.inputBonusNum(winningTicket);
         return winningTicket;
+    }
+
+    public Map<Rank, Integer> matchLotto(WinningTicket winningTicket, List<LottoTicket> lottoTickets) {
+        return lottoService.countMatchValue(winningTicket, lottoTickets);
     }
 
 }

@@ -9,13 +9,25 @@ public class LottoStore {
     private static final int LOTTO_SIZE = 6;
     static final String ERROR_INPUT_NUM = "숫자를 입력해주세요.";
     static final String ERROR_INPUT_RANGE = "1~45 사이의 숫자를 입력해주세요.";
+    static final String ERROR_INPUT_SIZE = "6개의 숫자를 입력해주세요.";
     static final String ERROR_INPUT_DUCPLICATED = "중복되지 않은 숫자를 입력해주세요.";
+    static final String ERROR_INPUT_OVER = "구매 로또 개수를 초과하였습니다.";
     static final List<Integer> nums = new ArrayList<>();
 
     public LottoStore() {
         for (int i = MIN_LOTTONUM; i <= MAX_LOTTONUM; i++) {
             nums.add(i);
         }
+    }
+
+    public int checkManualLottoSize(String numStr, int count) {
+        if (numStr == null || numStr.isEmpty() || !numStr.matches(INT_REGEX)) {
+            throw new RuntimeException(ERROR_INPUT_NUM);
+        }
+        if (Integer.parseInt(numStr)>count){
+            throw new RuntimeException(ERROR_INPUT_OVER);
+        }
+        return Integer.parseInt(numStr);
     }
 
     public List<Integer> splitNums(String nums) {
@@ -39,6 +51,9 @@ public class LottoStore {
     }
 
     public void checkLottoSize(List<Integer> beforeLotto) {
+        if (beforeLotto.size()!=LOTTO_SIZE){
+            throw new RuntimeException(ERROR_INPUT_SIZE);
+        }
         Set<Integer> checkSize = new HashSet<>();
         for (int i = 0; i < beforeLotto.size(); i++) {
             checkSize.add(beforeLotto.get(i));

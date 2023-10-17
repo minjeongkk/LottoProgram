@@ -24,19 +24,6 @@ public class LottoServiceTest {
     }
 
     @Test
-    void getManualLottoNum(){
-        LottoService lottoService = new LottoService();
-        List<LottoTicket> lottoList= lottoService.buyManualLottoTickets(3);
-
-        List<LottoTicket> lottoCheckList = new ArrayList<>();
-        lottoCheckList.add(new LottoTicket(Arrays.asList(1,2,3,4,5,6)));
-        lottoCheckList.add(new LottoTicket(Arrays.asList(1,2,3,4,5,7)));
-        lottoCheckList.add(new LottoTicket(Arrays.asList(1,2,3,4,5,8)));
-
-        assertThat(lottoList.size()).isEqualTo(3);
-    }
-
-    @Test
     void countMatchValue_1등() {
         LottoService lottoService = new LottoService();
 

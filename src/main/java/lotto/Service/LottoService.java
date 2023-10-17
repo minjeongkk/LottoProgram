@@ -34,14 +34,32 @@ public class LottoService {
         return money.getMoney() / LOTTO_MONEY;
     }
 
-    public List<LottoTicket> buyLottoTickets(int count) {
+    public int inputManualLotto(int count) {
+        Scanner scanner = new Scanner(System.in);
+        String inputValue = scanner.next();
         LottoStore lottoStore = new LottoStore();
+        return lottoStore.checkManualLottoSize(inputValue, count);
+    }
+
+    public List<LottoTicket> buyManualLottoTickets(int manualCount) {
         List<LottoTicket> purchaseLottoTickets = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            LottoTicket lottoTicket = lottoStore.createLotto();    // 로또 1개 생성
-            purchaseLottoTickets.add(lottoTicket);
+        Scanner scanner = new Scanner(System.in);
+        LottoStore lottoStore = new LottoStore();
+        for (int i = 0; i < manualCount; i++) {
+            String inputValue = scanner.nextLine();
+            List<Integer> nums = lottoStore.splitNums(inputValue);
+            purchaseLottoTickets.add(new LottoTicket(nums));
         }
         return purchaseLottoTickets;
+    }
+
+    public List<LottoTicket> buyLottoTickets(List<LottoTicket> lottoTickets, int count) {
+        LottoStore lottoStore = new LottoStore();
+        for (int i = 0; i < count; i++) {
+            LottoTicket lottoTicket = lottoStore.createLotto();    // 로또 1개 생성
+            lottoTickets.add(lottoTicket);
+        }
+        return lottoTickets;
     }
 
     public WinningTicket inputBeforeLotto() {

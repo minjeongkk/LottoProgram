@@ -22,8 +22,13 @@ public class LottoController {
         InputView.printInputMoney();
         Money money = lottoService.inputMoney();
         int count = lottoService.countLotto(money);
-        List<LottoTicket> lottoTicketList = lottoService.buyLottoTickets(count);
-        OutputView.printOutputLottoList(count, lottoTicketList);
+        InputView.printInputManualNums();
+        int manualCount = lottoService.inputManualLotto(count);
+        InputView.printInputManualLottoNums();
+        List<LottoTicket> lottoTicketList = lottoService.buyManualLottoTickets(manualCount);
+        lottoTicketList = lottoService.buyLottoTickets(lottoTicketList, count - manualCount);
+        OutputView.printOutputLottoCount(manualCount, count);
+        OutputView.printOutputLottoList(lottoTicketList);
         return lottoTicketList;
     }
 

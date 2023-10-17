@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputView {
-    private static final String OUTPUT_PURCHASE_LOTTOCOUNT = "개를 구입했습니다.";
+    private static final String OUTPUT_PURCHASE_LOTTOCOUNT = "수동으로 %d장, 자동으로 %d장을 구매했습니다.\n";
     private static final String OUTPUT_RESULT = "당첨 통계";
     private static final String OUTPUT_LINE = "---------";
     private static final String OUTPUT_MATCH_LOTTO = "%d개 일치 (%d원)- %d개\n";
@@ -15,8 +15,11 @@ public class OutputView {
     private static final String OUTPUT_YIELD_RATE_OF_RETURN = "총 수익률은 %s입니다.(기준이 1이기 때문에 결과적으로 %s라는 의미임)";
 
 
-    public static void printOutputLottoList(int count, List<LottoTicket> list) {
-        System.out.println(count + OUTPUT_PURCHASE_LOTTOCOUNT);
+    public static void printOutputLottoCount(int manualCount, int count) {
+        System.out.printf(OUTPUT_PURCHASE_LOTTOCOUNT, manualCount, count);
+    }
+
+    public static void printOutputLottoList(List<LottoTicket> list){
         for (LottoTicket nums : list) {
             System.out.println(nums.toString());
         }

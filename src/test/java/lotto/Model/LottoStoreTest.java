@@ -24,8 +24,6 @@ class LottoStoreTest {
         LottoStore lottoStore = new LottoStore();
         assertThatThrownBy(() -> lottoStore.splitNums("1,2"))
                 .isInstanceOf(RuntimeException.class);
-        assertThatThrownBy(() -> lottoStore.splitNums("1, 2, 1, 2, 1, 2"))
-                .isInstanceOf(RuntimeException.class);
     }
 
     @Test

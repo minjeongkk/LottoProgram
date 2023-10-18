@@ -11,37 +11,65 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class WinningTicketTest {
     @Test
     public void setBonusBall_실패_문자(){
-        List<Integer> lottonums = Arrays.asList(1, 2, 3, 7, 8, 9);
+        LottoNo lottoNo1 = new LottoNo("1");
+        LottoNo lottoNo2 = new LottoNo("2");
+        LottoNo lottoNo3 = new LottoNo("3");
+        LottoNo lottoNo4 = new LottoNo("4");
+        LottoNo lottoNo5 = new LottoNo("5");
+        LottoNo lottoNo6 = new LottoNo("6");
+        WinningTicket winningTicket = new WinningTicket(Arrays.asList(lottoNo1,lottoNo2,lottoNo3,
+                lottoNo4,lottoNo5,lottoNo6));
+
         String bonusBall = "ㄱ";
-        WinningTicket winningTicket = new WinningTicket(lottonums);
         assertThatThrownBy(() -> {winningTicket.checkBonusNum(bonusBall);})
                 .isInstanceOf(RuntimeException.class);
     }
 
     @Test
     public void setBonusBall_실패_범위(){
-        List<Integer> lottonums = Arrays.asList(1, 2, 3, 7, 8, 9);
+        LottoNo lottoNo1 = new LottoNo("1");
+        LottoNo lottoNo2 = new LottoNo("2");
+        LottoNo lottoNo3 = new LottoNo("3");
+        LottoNo lottoNo4 = new LottoNo("4");
+        LottoNo lottoNo5 = new LottoNo("5");
+        LottoNo lottoNo6 = new LottoNo("6");
+        WinningTicket winningTicket = new WinningTicket(Arrays.asList(lottoNo1,lottoNo2,lottoNo3,
+                lottoNo4,lottoNo5,lottoNo6));
+
         String bonusBall = "100";
-        WinningTicket winningTicket = new WinningTicket(lottonums);
         assertThatThrownBy(() -> {winningTicket.checkBonusNum(bonusBall);})
                 .isInstanceOf(RuntimeException.class);
     }
 
     @Test
     public void setBonusBall_실패_중복(){
-        List<Integer> lottonums = Arrays.asList(1, 2, 3, 7, 8, 9);
+        LottoNo lottoNo1 = new LottoNo("1");
+        LottoNo lottoNo2 = new LottoNo("2");
+        LottoNo lottoNo3 = new LottoNo("3");
+        LottoNo lottoNo4 = new LottoNo("4");
+        LottoNo lottoNo5 = new LottoNo("5");
+        LottoNo lottoNo6 = new LottoNo("6");
+        WinningTicket winningTicket = new WinningTicket(Arrays.asList(lottoNo1,lottoNo2,lottoNo3,
+                lottoNo4,lottoNo5,lottoNo6));
+
         String bonusBall = "1";
-        WinningTicket winningTicket = new WinningTicket(lottonums);
         assertThatThrownBy(() -> {winningTicket.checkBonusNum(bonusBall);})
                 .isInstanceOf(RuntimeException.class);
     }
 
     @Test
     public void setBonusBall_성공(){
-        List<Integer> lottonums = Arrays.asList(1, 2, 3, 7, 8, 9);
+        LottoNo lottoNo1 = new LottoNo("1");
+        LottoNo lottoNo2 = new LottoNo("2");
+        LottoNo lottoNo3 = new LottoNo("3");
+        LottoNo lottoNo4 = new LottoNo("4");
+        LottoNo lottoNo5 = new LottoNo("5");
+        LottoNo lottoNo6 = new LottoNo("6");
+        WinningTicket winningTicket = new WinningTicket(Arrays.asList(lottoNo1,lottoNo2,lottoNo3,
+                lottoNo4,lottoNo5,lottoNo6));
+
         String bonusBall = "10";
-        WinningTicket winningTicket = new WinningTicket(lottonums);
         winningTicket.checkBonusNum(bonusBall);
-        assertThat(winningTicket.getBonusBall()).isEqualTo(10);
+        assertThat(winningTicket.getBonusBall().getLottoNo()).isEqualTo(10);
     }
 }

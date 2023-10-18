@@ -17,11 +17,13 @@ public class LottoService {
 
 
     private final Map<Rank, Integer> countRanks = new HashMap<Rank, Integer>();
+    LottoStore lottoStore;
 
     public LottoService() {
         for (Rank rank : Rank.values()) {
             countRanks.put(rank, ZERO);
         }
+        this.lottoStore = new LottoStore();
     }
 
     public Money inputMoney() {
@@ -37,24 +39,21 @@ public class LottoService {
     public int inputManualLotto(int count) {
         Scanner scanner = new Scanner(System.in);
         String inputValue = scanner.next();
-        LottoStore lottoStore = new LottoStore();
         return lottoStore.checkManualLottoSize(inputValue, count);
     }
 
     public List<LottoTicket> buyManualLottoTickets(int manualCount) {
         List<LottoTicket> purchaseLottoTickets = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
-        LottoStore lottoStore = new LottoStore();
         for (int i = 0; i < manualCount; i++) {
             String inputValue = scanner.nextLine();
-            List<Integer> nums = lottoStore.splitNums(inputValue);
+            List<LottoNo> nums = lottoStore.splitNums(inputValue);
             purchaseLottoTickets.add(new LottoTicket(nums));
         }
         return purchaseLottoTickets;
     }
 
     public List<LottoTicket> buyLottoTickets(List<LottoTicket> lottoTickets, int count) {
-        LottoStore lottoStore = new LottoStore();
         for (int i = 0; i < count; i++) {
             LottoTicket lottoTicket = lottoStore.createLotto();    // 로또 1개 생성
             lottoTickets.add(lottoTicket);
@@ -65,8 +64,7 @@ public class LottoService {
     public WinningTicket inputBeforeLotto() {
         Scanner scanner = new Scanner(System.in);
         String inputValue = scanner.nextLine();
-        LottoStore lottoStore = new LottoStore();
-        List<Integer> nums = lottoStore.splitNums(inputValue);
+        List<LottoNo> nums = lottoStore.splitNums(inputValue);
         return new WinningTicket(nums);
     }
 

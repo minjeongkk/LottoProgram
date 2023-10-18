@@ -8,53 +8,64 @@ public class LottoStore {
     private static final String INT_REGEX = "[+-]?\\d*(\\.\\d+)?";
     private static final int LOTTO_SIZE = 6;
     static final String ERROR_INPUT_NUM = "숫자를 입력해주세요.";
-    static final String ERROR_INPUT_RANGE = "1~45 사이의 숫자를 입력해주세요.";
+    static final String ERROR_INPUT_SIZE = "6개의 숫자를 입력해주세요.";
     static final String ERROR_INPUT_DUCPLICATED = "중복되지 않은 숫자를 입력해주세요.";
-    static final List<Integer> nums = new ArrayList<>();
+    static final String ERROR_INPUT_OVER = "구매 로또 개수를 초과하였습니다.";
+    static final List<LottoNo> nums = new ArrayList<>();
 
     public LottoStore() {
         for (int i = MIN_LOTTONUM; i <= MAX_LOTTONUM; i++) {
-            nums.add(i);
+            nums.add(new LottoNo(String.valueOf(i)));
         }
     }
 
-    public List<Integer> splitNums(String nums) {
+    public int checkManualLottoSize(String numStr, int count) {
+        if (numStr == null || numStr.isEmpty() || !numStr.matches(INT_REGEX)) {
+            throw new RuntimeException(ERROR_INPUT_NUM);
+        }
+        if (Integer.parseInt(numStr)>count){
+            throw new RuntimeException(ERROR_INPUT_OVER);
+        }
+        return Integer.parseInt(numStr);
+    }
+
+    public List<LottoNo> splitNums(String nums) {
         String[] strings = nums.split(",");
-        List<Integer> results = new ArrayList<>();
+        List<LottoNo> results = new ArrayList<>();
         for (String string : strings) {
-            checkLottoNum(string.trim());
-            results.add(Integer.parseInt(string.trim()));
+            LottoNo lottoNo = new LottoNo(string.trim());
+            checkDuplicated(results, lottoNo);
+            results.add(lottoNo);
         }
         checkLottoSize(results);
         return results;
     }
 
-    public void checkLottoNum(String numStr) {
-        if (numStr == null || numStr.isEmpty() || !numStr.matches(INT_REGEX)) {
-            throw new RuntimeException(ERROR_INPUT_NUM);
+    public void checkDuplicated(List<LottoNo> inputLotto, LottoNo lottoNo) {
+        int result = 0;
+        for (LottoNo inputLottoNo : inputLotto) {
+            result += inputLottoNo.isMatched(lottoNo);
         }
-        if ((Integer.parseInt(numStr) < MIN_LOTTONUM || Integer.parseInt(numStr) > MAX_LOTTONUM)) {
-            throw new RuntimeException(ERROR_INPUT_RANGE);
+        if (result != 0) {
+            throw new RuntimeException(ERROR_INPUT_DUCPLICATED);
         }
     }
 
-    public void checkLottoSize(List<Integer> beforeLotto) {
-        Set<Integer> checkSize = new HashSet<>();
-        for (int i = 0; i < beforeLotto.size(); i++) {
-            checkSize.add(beforeLotto.get(i));
-        }
-        if (checkSize.size() != LOTTO_SIZE) {
-            throw new RuntimeException(ERROR_INPUT_DUCPLICATED);
+    public void checkLottoSize(List<LottoNo> beforeLotto) {
+        if (beforeLotto.size()!=LOTTO_SIZE){
+            throw new RuntimeException(ERROR_INPUT_SIZE);
         }
     }
 
     public LottoTicket createLotto() {
         Collections.shuffle(nums);
 
-        List<Integer> lottoNums = new ArrayList<>();
+        List<LottoNo> lottoNums = new ArrayList<>();
         for (int i = 0; i < LOTTO_SIZE; i++) {
-            lottoNums.add(nums.get(i));
+            String getLottoNum = String.valueOf(nums.get(i).getLottoNo());
+            lottoNums.add(new LottoNo(getLottoNum));
         }
+
         Collections.sort(lottoNums);
 
         return new LottoTicket(lottoNums);

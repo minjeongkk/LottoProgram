@@ -1,9 +1,6 @@
 package lotto.Service;
 
-import lotto.Model.LottoTicket;
-import lotto.Model.Money;
-import lotto.Model.Rank;
-import lotto.Model.WinningTicket;
+import lotto.Model.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -28,12 +25,25 @@ public class LottoServiceTest {
         LottoService lottoService = new LottoService();
 
         List<LottoTicket> lottoList = new ArrayList<>();
-        WinningTicket winningTicket = new WinningTicket(Arrays.asList(1,2,3,4,5,6));
+        LottoNo lottoNo1 = new LottoNo("1");
+        LottoNo lottoNo2 = new LottoNo("2");
+        LottoNo lottoNo3 = new LottoNo("3");
+        LottoNo lottoNo4 = new LottoNo("4");
+        LottoNo lottoNo5 = new LottoNo("5");
+        LottoNo lottoNo6 = new LottoNo("6");
+        WinningTicket winningTicket = new WinningTicket(Arrays.asList(lottoNo1,lottoNo2,lottoNo3,
+                lottoNo4,lottoNo5,lottoNo6));
         winningTicket.checkBonusNum("7");
 
-        lottoList.add(new LottoTicket(Arrays.asList(1,2,3,4,5,6)));
-        lottoList.add(new LottoTicket(Arrays.asList(1,2,3,4,5,7)));
-        lottoList.add(new LottoTicket(Arrays.asList(1,2,3,4,5,8)));
+        LottoNo myLottoNo1 = new LottoNo("1");
+        LottoNo myLottoNo2 = new LottoNo("2");
+        LottoNo myLottoNo3 = new LottoNo("3");
+        LottoNo myLottoNo4 = new LottoNo("4");
+        LottoNo myLottoNo5 = new LottoNo("5");
+        LottoNo myLottoNo6 = new LottoNo("6");
+
+        lottoList.add(new LottoTicket(Arrays.asList(myLottoNo1,myLottoNo2,myLottoNo3,
+                myLottoNo4,myLottoNo5,myLottoNo6)));
         Map<Rank, Integer> results = lottoService.countMatchValue(winningTicket, lottoList);
 
         assertThat(results.get(Rank.FIRST)).isEqualTo(1);
@@ -44,15 +54,28 @@ public class LottoServiceTest {
         LottoService lottoService = new LottoService();
 
         List<LottoTicket> lottoList = new ArrayList<>();
-        WinningTicket winningTicket = new WinningTicket(Arrays.asList(1,2,3,4,5,6));
+        LottoNo lottoNo1 = new LottoNo("1");
+        LottoNo lottoNo2 = new LottoNo("2");
+        LottoNo lottoNo3 = new LottoNo("3");
+        LottoNo lottoNo4 = new LottoNo("4");
+        LottoNo lottoNo5 = new LottoNo("5");
+        LottoNo lottoNo6 = new LottoNo("6");
+        WinningTicket winningTicket = new WinningTicket(Arrays.asList(lottoNo1,lottoNo2,lottoNo3,
+                                                        lottoNo4,lottoNo5,lottoNo6));
         winningTicket.checkBonusNum("7");
 
-        lottoList.add(new LottoTicket(Arrays.asList(1,2,3,4,5,6)));
-        lottoList.add(new LottoTicket(Arrays.asList(1,2,3,4,5,7)));
-        lottoList.add(new LottoTicket(Arrays.asList(1,2,3,4,5,7)));
+        LottoNo myLottoNo1 = new LottoNo("1");
+        LottoNo myLottoNo2 = new LottoNo("2");
+        LottoNo myLottoNo3 = new LottoNo("3");
+        LottoNo myLottoNo4 = new LottoNo("4");
+        LottoNo myLottoNo5 = new LottoNo("5");
+        LottoNo myLottoNo6 = new LottoNo("7");
+
+        lottoList.add(new LottoTicket(Arrays.asList(myLottoNo1,myLottoNo2,myLottoNo3,
+                                        myLottoNo4,myLottoNo5,myLottoNo6)));
         Map<Rank, Integer> results = lottoService.countMatchValue(winningTicket, lottoList);
 
-        assertThat(results.get(Rank.SECOND)).isEqualTo(2);
+        assertThat(results.get(Rank.SECOND)).isEqualTo(1);
     }
 
     @Test

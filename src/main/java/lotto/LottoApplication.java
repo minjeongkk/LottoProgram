@@ -13,9 +13,6 @@ public class LottoApplication {
     public static void main(String[] args) {
         // 로또 프로그램 시작
         LottoController lottoController = new LottoController();
-        List<LottoTicket> myLottoTicket = lottoController.buyLotto();
-        WinningTicket winningTicket = lottoController.setWinningTicket();
-        Map<Rank, Integer> matchLotto = lottoController.matchLotto(winningTicket, myLottoTicket);
-        lottoController.printResult(myLottoTicket.size(), matchLotto);
+        lottoController.run();
     }
 }

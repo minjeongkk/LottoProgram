@@ -38,6 +38,7 @@ public class LottoStore {
             results.add(lottoNo);
         }
         checkLottoSize(results);
+        Collections.sort(results);
         return results;
     }
 

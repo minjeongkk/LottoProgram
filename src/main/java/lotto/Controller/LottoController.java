@@ -50,5 +50,11 @@ public class LottoController {
         OutputView.printOutputResult(countRanks, rate, result);
     }
 
+    public void run(){
+        List<LottoTicket> myLottoTicket = buyLotto();
+        WinningTicket winningTicket = setWinningTicket();
+        Map<Rank, Integer> matchLotto = matchLotto(winningTicket, myLottoTicket);
+        printResult(myLottoTicket.size(), matchLotto);
+    }
 
 }

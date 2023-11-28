@@ -1,12 +1,12 @@
 package lotto.Model;
 
+import lotto.message.ErrorMessage;
+
 public class LottoNo implements Comparable<LottoNo>{
     private int lottoNo;
     private static final int MIN_LOTTONUM = 1;
     private static final int MAX_LOTTONUM = 45;
     private static final String INT_REGEX = "[+-]?\\d*(\\.\\d+)?";
-    static final String ERROR_INPUT_NUM = "숫자를 입력해주세요.";
-    static final String ERROR_INPUT_RANGE = "1~45 사이의 숫자를 입력해주세요.";
     private static final int IS_MATCHED = 1;
     private static final int IS_NOT_MATCHED = 0;
     private static final int ZERO = 0;
@@ -28,10 +28,10 @@ public class LottoNo implements Comparable<LottoNo>{
 
     private boolean checkLottoNo(String numStr) {
         if (numStr == null || numStr.isEmpty() || !numStr.matches(INT_REGEX)) {
-            throw new RuntimeException(ERROR_INPUT_NUM);
+            throw new RuntimeException(ErrorMessage.ERROR_INPUT_NUM);
         }
         if ((Integer.parseInt(numStr) < MIN_LOTTONUM || Integer.parseInt(numStr) > MAX_LOTTONUM)) {
-            throw new RuntimeException(ERROR_INPUT_RANGE);
+            throw new RuntimeException(ErrorMessage.ERROR_INPUT_RANGE);
         }
         return true;
     }

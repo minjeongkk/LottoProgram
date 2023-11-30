@@ -1,10 +1,10 @@
 package lotto.Model;
 
+import lotto.message.ErrorMessage;
+
 public class Money {
     private int inputMoney = 0;
     private static final String INT_REGEX = "[+-]?\\d*(\\.\\d+)?";
-    static final String ERROR_INPUT_NUM = "숫자를 입력해주세요.";
-    static final String ERROR_INPUT_POSITIVE = "양수를 입력해주세요.";
 
     public Money() {
     }
@@ -21,10 +21,10 @@ public class Money {
 
     public boolean isMoney(String inputValue) {
         if (inputValue == null || inputValue.isEmpty() || !inputValue.matches(INT_REGEX)) {
-            throw new RuntimeException(ERROR_INPUT_NUM);
+            throw new RuntimeException(ErrorMessage.ERROR_INPUT_NUM);
         }
         if (Integer.parseInt(inputValue) < 0) {
-            throw new RuntimeException(ERROR_INPUT_POSITIVE);
+            throw new RuntimeException(ErrorMessage.ERROR_INPUT_POSITIVE);
         }
         return true;
     }

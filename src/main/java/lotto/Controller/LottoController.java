@@ -18,10 +18,13 @@ public class LottoController {
         this.lottoService = new LottoService();
     }
 
-    public List<LottoTicket> buyLotto() {
+    public int countLotto(){
         InputView.printInputMoney();
         Money money = lottoService.inputMoney();
-        int count = lottoService.countLotto(money);
+        return lottoService.countLotto(money);
+    }
+
+    public List<LottoTicket> buyLotto(int count) {
         InputView.printInputManualNums();
         int manualCount = lottoService.inputManualLotto(count);
         InputView.printInputManualLottoNums();
@@ -51,7 +54,8 @@ public class LottoController {
     }
 
     public void run(){
-        List<LottoTicket> myLottoTicket = buyLotto();
+        int count = countLotto();
+        List<LottoTicket> myLottoTicket = buyLotto(count);
         WinningTicket winningTicket = setWinningTicket();
         Map<Rank, Integer> matchLotto = matchLotto(winningTicket, myLottoTicket);
         printResult(myLottoTicket.size(), matchLotto);
